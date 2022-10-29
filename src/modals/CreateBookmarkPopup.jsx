@@ -16,6 +16,22 @@ const CreateBookmarkPopup = ({ modal, toggle, save }) => {
   };
 
   const handleSave = (e) => {
+    var expression =
+      /[-a-zA-Z0-9@:%_\+.~#?&//=]{2,256}\.[a-z]{2,4}\b(\/[-a-zA-Z0-9@:%_\+.~#?&//=]*)?/gi;
+    var regex = new RegExp(expression);
+
+    if (!description.match(regex)) {
+      alert("Please use a valid URL");
+      return false;
+    }
+    if (!selects) {
+      alert("Select categories is Required");
+      return false;
+    }
+    if (!taskName) {
+      alert("Title Required");
+      return false;
+    }
     e.preventDefault();
     let taskObj = {};
     taskObj["Category"] = selects;

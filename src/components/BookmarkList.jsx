@@ -60,7 +60,6 @@ const BookmarkList = () => {
           </div>
         </div>
       </div>
-      {/* <div className=" text-center"></div> */}
       <div className="task-container">
         {taskList &&
           taskList.map((obj, index) => (

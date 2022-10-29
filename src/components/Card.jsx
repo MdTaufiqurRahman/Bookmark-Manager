@@ -42,35 +42,52 @@ const Card = ({ taskObj, index, deleteTask, updateListArray }) => {
   console.log(taskObj);
 
   return (
-    <div class="card-wrapper mr-5">
-      <div
-        class="card-top"
-        style={{ "background-color": colors[index % 5].primaryColor }}
-      ></div>
-      <div class="task-holder">
-        <p className="mt-1"> {taskObj?.Name}</p>
-        <p className="">{taskObj?.Description}</p>
-        <p className="">{taskObj?.Category}</p>
+    <div>
+      <div class="card-wrapper mr-5" style={{ cursor: "pointer" }}>
+        <div
+          class="card-top"
+          style={{ "background-color": colors[index % 5].primaryColor }}
+        ></div>
+        <div class="task-holder">
+          <div class="row">
+            <div class="col">
+              <p className="mt-1"> {taskObj?.Name}</p>
+            </div>
+            <div class="col">
+              <button className="btn btn-outline-primary btn-sm">Details</button>
+            </div>
+          </div>
+          <a href={taskObj?.Description} target="_blank" rel="noopener">
+            {taskObj?.Description}
+          </a>
+          <p className="pt-2">{taskObj?.Category}</p>
 
-        <div style={{ position: "absolute", right: "20px", bottom: "20px" }}>
-          <i
-            class="far fa-edit mr-3"
-            style={{ color: colors[index % 5].primaryColor, cursor: "pointer" }}
-            onClick={() => setModal(true)}
-          ></i>
-          <i
-            class="fas fa-trash-alt"
-            style={{ color: colors[index % 5].primaryColor, cursor: "pointer" }}
-            onClick={handleDelete}
-          ></i>
+          <div style={{ position: "absolute", right: "20px", bottom: "20px" }}>
+            <i
+              class="far fa-edit mr-3"
+              style={{
+                color: colors[index % 5].primaryColor,
+                cursor: "pointer",
+              }}
+              onClick={() => setModal(true)}
+            ></i>
+            <i
+              class="fas fa-trash-alt"
+              style={{
+                color: colors[index % 5].primaryColor,
+                cursor: "pointer",
+              }}
+              onClick={handleDelete}
+            ></i>
+          </div>
         </div>
+        <EditBookmarkPopup
+          modal={modal}
+          toggle={toggle}
+          updateTask={updateTask}
+          taskObj={taskObj}
+        />
       </div>
-      <EditBookmarkPopup
-        modal={modal}
-        toggle={toggle}
-        updateTask={updateTask}
-        taskObj={taskObj}
-      />
     </div>
   );
 };
