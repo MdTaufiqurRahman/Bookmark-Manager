@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
 import CreateBookmarkPopup from "../modals/CreateBookmarkPopup";
 import Card from "./Card";
+import View from "./View";
 
 const BookmarkList = () => {
   const [modal, setModal] = useState(false);
   const [taskList, setTaskList] = useState([]);
+  const [show, setShow] = useState(true);
 
   useEffect(() => {
     let arr = localStorage.getItem("taskList");
@@ -51,10 +53,7 @@ const BookmarkList = () => {
             <h3>Bookmark Manager</h3>
           </div>
           <div class="col">
-            <button
-              className="btn btn-primary"
-              onClick={() => setModal(true)}
-            >
+            <button className="btn btn-primary" onClick={() => setModal(true)}>
               Add Bookmark
             </button>
           </div>
@@ -68,9 +67,13 @@ const BookmarkList = () => {
               index={index}
               deleteTask={deleteTask}
               updateListArray={updateListArray}
+              setShow={setShow}
+              show={show}
             />
           ))}
       </div>
+      {show ? "" : <View setShow={setShow}  taskList={taskList}/>}
+
       <CreateBookmarkPopup toggle={toggle} modal={modal} save={saveTask} />
     </>
   );

@@ -1,7 +1,14 @@
 import React, { useState } from "react";
 import EditBookmarkPopup from "../modals/EditBookmarkPopup";
 
-const Card = ({ taskObj, index, deleteTask, updateListArray }) => {
+const Card = ({
+  taskObj,
+  index,
+  deleteTask,
+  updateListArray,
+  show,
+  setShow,
+}) => {
   const [modal, setModal] = useState(false);
 
   const colors = [
@@ -39,8 +46,6 @@ const Card = ({ taskObj, index, deleteTask, updateListArray }) => {
     deleteTask(index);
   };
 
-  console.log(taskObj);
-
   return (
     <div>
       <div class="card-wrapper mr-5" style={{ cursor: "pointer" }}>
@@ -54,7 +59,12 @@ const Card = ({ taskObj, index, deleteTask, updateListArray }) => {
               <p className="mt-1"> {taskObj?.Name}</p>
             </div>
             <div class="col">
-              <button className="btn btn-outline-primary btn-sm">Details</button>
+              <button
+                onClick={() => setShow(false)}
+                className="btn btn-outline-primary btn-sm"
+              >
+                Details
+              </button>
             </div>
           </div>
           <a href={taskObj?.Description} target="_blank" rel="noopener">
